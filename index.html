@@ -631,7 +631,7 @@
                         급식 신청이 정상적으로 접수되었습니다.
                     </p>
 
-                    <div class="summary-box" style="text-align: left; margin-top: 2rem;">
+                    <div id="doneCapture" class="summary-box" style="text-align: left; margin-top: 2rem;">
                         <div class="summary-row">
                             <div class="summary-label">이름</div>
                             <div class="summary-value" id="doneName"></div>
@@ -644,7 +644,17 @@
                             <div class="summary-label">신청 내역</div>
                             <div class="summary-value" id="doneApply"></div>
                         </div>
+                        <div class="summary-row" id="doneTotalRow" style="border-top: 2px solid #f0a500; margin-top: 0.5rem; padding-top: 0.9rem;">
+                            <div class="summary-label" style="font-weight: 700; color: #333;">총 결제 금액</div>
+                            <div class="summary-value" id="doneTotal" style="font-weight: 700; color: #d97706; font-size: 17px;"></div>
+                        </div>
                     </div>
+
+                    <p style="font-size: 13px; color: #888; line-height: 1.7; margin-top: 1.5rem;">
+                        📸 이 이미지를 저장해서 보관해주세요.
+                    </p>
+
+                    <button type="button" class="btn-primary" style="margin-top: 0.5rem;" onclick="saveAsImage()">이미지로 저장하기</button>
                 </div>
             </div>
         </div>
@@ -831,11 +841,16 @@
                     document.getElementById('doneApply').innerHTML =
                         `<div style="font-weight:600; margin-bottom:0.5rem;">신청함 (총 ${count}회)</div>` +
                         lines.map(l => `<div style="font-size:13px; color:#444; line-height:1.9;">${l}</div>`).join('');
+                    const total = count * 8000;
+                    document.getElementById('doneTotal').textContent = total.toLocaleString() + '원';
+                    document.getElementById('doneTotalRow').style.display = '';
                 } else {
                     document.getElementById('doneApply').textContent = '신청 안 함';
+                    document.getElementById('doneTotalRow').style.display = 'none';
                 }
             } else {
                 document.getElementById('doneApply').textContent = '신청 안 함';
+                document.getElementById('doneTotalRow').style.display = 'none';
             }
 
             fetch(SCRIPT_URL, {
@@ -851,7 +866,33 @@
             });
         }
 
+        function saveAsImage() {
+            const btn = event.target;
+            const target = document.getElementById('doneCapture');
+            if (typeof html2canvas === 'undefined') {
+                alert('이미지 저장을 준비 중입니다. 잠시 후 다시 눌러주세요. 지금은 화면을 캡처해 저장해주세요.');
+                return;
+            }
+            const oldText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = '저장 중...';
+            html2canvas(target, { backgroundColor: '#ffffff', scale: 2 }).then(function(canvas) {
+                const link = document.createElement('a');
+                const name = (formData.name || '급식신청') + '_급식신청.png';
+                link.download = name;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                btn.disabled = false;
+                btn.textContent = oldText;
+            }).catch(function() {
+                btn.disabled = false;
+                btn.textContent = oldText;
+                alert('이미지 저장에 실패했어요. 화면을 직접 캡처해 저장해주세요.');
+            });
+        }
+
         initMealDates();
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>
