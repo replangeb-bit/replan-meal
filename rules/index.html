@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>취소 · 환불 안내 | 리플랜수지 여름방학 급식</title>
+<title>결제 · 취소 · 환불 안내 | 리플랜수지 여름방학 급식</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
@@ -54,6 +54,11 @@
     margin-bottom:4px;
   }
   .finder p.hint{font-size:13.5px;color:var(--ink-soft);margin-bottom:16px}
+  li span.hint{
+    display:inline-block;margin-top:5px;
+    font-size:13.5px;color:var(--ink-soft);line-height:1.6;
+  }
+  li span.hint b{color:var(--amber);font-weight:700}
   .days{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
   .day{
     appearance:none;border:1px solid var(--rule);background:#fff;
@@ -80,6 +85,28 @@
   .answer .note{
     font-size:13px;color:var(--amber);margin-top:8px;
     padding-top:8px;border-top:1px dashed #D6E3DD;
+  }
+
+  /* ── notice banner ── */
+  .notice{
+    margin:28px 0 8px;padding:20px;
+    background:var(--amber-tint);border:1px solid #EBD9BC;border-radius:14px;
+    box-shadow:var(--shadow);
+  }
+  .notice-tag{
+    display:inline-block;font-size:11.5px;letter-spacing:.08em;font-weight:700;
+    color:#fff;background:var(--amber);border-radius:999px;
+    padding:4px 11px;margin-bottom:11px;
+  }
+  .notice p{font-size:15.5px;color:#6B3E0B;line-height:1.75}
+  .notice p b{color:#5A3208;font-weight:700}
+  .notice-strong{
+    margin-top:12px;padding-top:12px;border-top:1px dashed #E0C79C;
+    font-size:15px;
+  }
+  .notice-strong b{
+    background:linear-gradient(transparent 58%, #F6D9A8 58%);
+    padding:0 2px;
   }
 
   /* ── sections ── */
@@ -165,77 +192,48 @@
 
   <header>
     <div class="eyebrow">리플랜수지 · 2026 여름방학 급식</div>
-    <h1>취소 · 환불 안내</h1>
-    <p class="sub">신청하신 식사의 취소 기한과 환불 방식을 안내드립니다.</p>
+    <h1>결제 · 취소 · 환불 안내</h1>
+    <p class="sub">급식 결제 · 취소 · 환불 방식을 안내드립니다. 잠시만 시간 내어 확인 부탁드려요.</p>
   </header>
 
-  <!-- 시그니처: 마감 확인기 -->
-  <div class="finder">
-    <h2>취소 마감 확인</h2>
-    <p class="hint">취소하실 식사의 요일을 눌러주세요.</p>
-    <div class="days" role="group" aria-label="식사 요일 선택">
-      <button class="day" data-d="월" aria-pressed="false">월</button>
-      <button class="day" data-d="화" aria-pressed="false">화</button>
-      <button class="day" data-d="수" aria-pressed="false">수</button>
-      <button class="day" data-d="목" aria-pressed="false">목</button>
-      <button class="day" data-d="금" aria-pressed="false">금</button>
-      <button class="day" data-d="토" aria-pressed="false">토</button>
-    </div>
-    <div class="answer" id="answer" aria-live="polite">
-      <div class="placeholder">요일을 선택하면 마감 시각을 알려드립니다.</div>
-    </div>
+  <div class="notice">
+    <div class="notice-tag">꼭 확인해 주세요</div>
+    <p><b>입금 마감이 목요일 18시로 변경되었습니다.</b><br>
+    매주 월요일 안내드리는 금액을 <b>목요일 18시</b>까지 입금해 주시면 됩니다.</p>
+    <p class="notice-strong">※ 목요일 18시까지 입금이 확인되지 않으면<br><b>다음 주 급식 전체가 취소</b>됩니다.</p>
   </div>
+
+  <section>
+    <h2 class="sec">결제 <span>PAYMENT</span></h2>
+    <ul>
+      <li>매주 <b>월요일</b>에 다음 주 신청분 금액을 문자로 안내드려요.</li>
+      <li>안내드린 금액을 <b>목요일 18시</b>까지 입금해 주시면 다음 주 식사가 주문됩니다.</li>
+      <li><b>기한을 꼭 지켜주세요.</b> 목요일 18시까지 입금이 확인되지 않으면 <b>다음 주 급식이 전면 취소</b>되며, 개별 식사만 남기거나 뒤늦게 살릴 수 없습니다.</li>
+      <li>식사 1회당 8,000원입니다.</li>
+    </ul>
+  </section>
 
   <section>
     <h2 class="sec">취소 <span>CANCELLATION</span></h2>
     <ul>
-      <li>취소는 <b>식사 배송일 기준 2영업일 전 18시</b>까지 연락 주셔야 합니다.</li>
-      <li>월요일 · 화요일 식사는 <b>그 전 주 금요일 18시</b>까지 말씀해 주세요.</li>
-      <li>이 시간을 넘기면 업체에 이미 주문이 들어가 취소가 어렵고, 해당 식사 금액이 그대로 청구됩니다.</li>
+      <li>취소는 <b>식사 배송일 기준 2영업일 전 18시</b>까지 연락 주시면 됩니다.
+        <br><span class="hint">참고 — 주말이 끼는 월요일 · 화요일 식사는 그 전 주 금요일 18시가 마감입니다.</span>
+        <br><span class="hint">참고 — 첫 주차(7/20~)는 7월 17일(금)이 공휴일이라, <b>7월 16일(목) 18시</b>가 마감입니다.</span></li>
+      <li><b>회신 기한도 꼭 지켜주세요.</b> 이 시간을 넘기면 업체에 이미 주문이 들어가 취소가 불가능합니다. 이 경우 해당 식사 금액이 그대로 청구되는 점 양해 부탁드려요.</li>
     </ul>
-
-    <table>
-      <caption>요일별 취소 마감</caption>
-      <thead>
-        <tr><th scope="col">식사일</th><th scope="col">취소 마감</th></tr>
-      </thead>
-      <tbody>
-        <tr class="exception"><th scope="row">월요일</th><td>전주 금요일 18시</td></tr>
-        <tr class="exception"><th scope="row">화요일</th><td>전주 금요일 18시</td></tr>
-        <tr><th scope="row">수요일</th><td>월요일 18시</td></tr>
-        <tr><th scope="row">목요일</th><td>화요일 18시</td></tr>
-        <tr><th scope="row">금요일</th><td>수요일 18시</td></tr>
-        <tr><th scope="row">토요일</th><td>목요일 18시</td></tr>
-      </tbody>
-    </table>
-
-    <div class="callout">
-      <b>7/20(월) · 7/21(화) 식사만 예외입니다.</b><br>
-      7월 17일(금)이 공휴일이므로, <b>7월 16일(목) 18시</b>까지 말씀해 주셔야 합니다.
-    </div>
   </section>
 
   <section>
     <h2 class="sec">환불 <span>REFUND</span></h2>
     <ul>
-      <li>취소하신 식사 금액은 <b>매주 월요일</b>에 환불해 드립니다.</li>
+      <li>취소하신 식사 금액은 <b>매주 월요일</b>에 환불해 드려요.</li>
       <li>다음 주 결제 예정 금액이 있다면 <b>환불금에서 먼저 차감</b>하고, 남는 금액을 계좌로 보내드립니다.</li>
-      <li>차감이 적용된 경우, 결제 안내 문자에는 <b>차감 후 금액</b>이 안내됩니다. 안내된 금액 그대로 입금해 주세요.</li>
+      <li>차감이 적용된 경우, 결제 안내 문자에 <b>차감 후 금액</b>을 안내드립니다. 안내된 금액 그대로 입금해 주시면 됩니다.</li>
       <li>환불 대상은 <b>취소를 접수한 날</b>을 기준으로 한 주씩 묶습니다. (식사일 기준이 아닙니다)</li>
     </ul>
     <div class="callout">
-      환불 계좌를 아직 알려주지 않으셨다면, <b>입금 시 은행 · 계좌번호 · 예금주</b>를 함께 문자로 보내주세요.
+      입금 시 <b>은행 · 계좌번호 · 예금주</b>를 함께 문자로 보내주시면 감사하겠습니다.
     </div>
-  </section>
-
-  <section>
-    <h2 class="sec">결제 <span>PAYMENT</span></h2>
-    <ul>
-      <li>매주 <b>월요일</b>, 다음 주 신청분에 해당하는 금액을 문자로 안내드립니다.</li>
-      <li>안내된 금액을 <b>목요일 18시</b>까지 입금해 주시면 다음 주 식사가 주문됩니다.</li>
-      <li>기한까지 입금이 확인되지 않으면 해당 주 식사가 주문되지 않습니다.</li>
-      <li>1식 8,000원입니다.</li>
-    </ul>
   </section>
 
   <section>
@@ -243,7 +241,7 @@
 
     <details>
       <summary>마감 시간이 지났는데 취소하고 싶어요.</summary>
-      <p>이미 업체에 주문이 들어간 상태라 취소가 어렵습니다. <b>해당 식사 금액은 청구됩니다.</b></p>
+      <p>이미 업체에 주문이 들어간 상태라 취소가 어렵습니다. <b>해당 식사 금액은 청구되는 점</b> 양해 부탁드려요.</p>
     </details>
 
     <details>
@@ -258,48 +256,26 @@
 
     <details>
       <summary>입금을 안 하면 어떻게 되나요?</summary>
-      <p>목요일 18시까지 입금이 확인되지 않으면 <b>해당 주 식사 주문이 취소</b>됩니다. 입금하지 않으신 금액이므로 환불은 발생하지 않습니다.</p>
+      <p>목요일 18시까지 입금이 확인되지 않으면 <b>다음 주 급식 전체가 취소</b>됩니다. 일부 요일만 살리거나 뒤늦게 입금해 되돌리는 것은 어려우니, <b>기한을 꼭 지켜주세요.</b> 입금하지 않으신 금액이라 환불은 따로 발생하지 않습니다.</p>
+    </details>
+
+    <details>
+      <summary>취소를 안 했는데 갑자기 미등원하게 되어 식사를 못 받았어요.</summary>
+      <p>취소 마감이 지난 식사는 이미 주문이 확정되어 학원으로 배송됩니다. 배송된 식사는 식사 시간이 끝난 뒤 업체가 빈 용기와 함께 수거해 가기 때문에 <b>해당 식사 금액은 환불되지 않습니다.</b> 미등원이 예상되시면 취소 마감 시간 전에 미리 연락 주시면 도와드릴 수 있습니다.</p>
     </details>
 
     <details>
       <summary>신청내역이 실제와 다릅니다.</summary>
-      <p>입금하시기 전에 <b>문자로 회신</b>해 주세요. 확인 후 다시 안내드리겠습니다.</p>
+      <p>입금하시기 전에 <b>문자로 회신</b>해 주시면 확인 후 바로 다시 안내드리겠습니다.</p>
     </details>
   </section>
 
   <footer>
-    문의는 결제 안내 문자를 받으신 번호로 회신해 주세요.<br>
+    궁금한 점은 결제 안내 문자를 받으신 번호로 편하게 회신해 주세요.<br>
     리플랜관리형학습센터 수지
   </footer>
 
 </div>
 
-<script>
-  const DEADLINE = {
-    "월":{when:"전주 금요일 18시", note:"7/20(월) 식사만 예외 — 7/16(목) 18시까지"},
-    "화":{when:"전주 금요일 18시", note:"7/21(화) 식사만 예외 — 7/16(목) 18시까지"},
-    "수":{when:"월요일 18시"},
-    "목":{when:"화요일 18시"},
-    "금":{when:"수요일 18시"},
-    "토":{when:"목요일 18시"}
-  };
-
-  const answer = document.getElementById('answer');
-  const buttons = document.querySelectorAll('.day');
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.setAttribute('aria-pressed','false'));
-      btn.setAttribute('aria-pressed','true');
-
-      const d = btn.dataset.d;
-      const info = DEADLINE[d];
-      let html = '<div class="lead">' + d + '요일 식사는</div>'
-               + '<div class="when">' + info.when + '까지</div>';
-      if (info.note) html += '<div class="note">' + info.note + '</div>';
-      answer.innerHTML = html;
-    });
-  });
-</script>
 </body>
 </html>
